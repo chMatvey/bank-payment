@@ -4,6 +4,7 @@ import Input from 'arui-feather/input'
 import Button from 'arui-feather/button'
 import CardInput from 'arui-feather/card-input'
 import Select from 'arui-feather/select'
+import './card.css'
 
 class Card extends React.Component {
     constructor(props) {

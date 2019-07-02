@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import Input from 'arui-feather/input'
 import RadioGroup from 'arui-feather/radio-group'
 import Radio from 'arui-feather/radio'
-import Card from './component/card'
+import Card from './component/card/card'
 
 class App extends React.Component {
     constructor(props) {
