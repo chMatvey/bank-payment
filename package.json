@@ -2,6 +2,8 @@
   "name": "bank-payment",
   "dependencies": {
     "arui-feather": "^13.13.0",
+    "banks-db": "^0.16.0",
+    "contrast": "^1.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",

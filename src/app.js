@@ -4,6 +4,7 @@ import Input from 'arui-feather/input'
 import RadioGroup from 'arui-feather/radio-group'
 import Radio from 'arui-feather/radio'
 import Card from './component/card/card'
+import Button from "arui-feather/button";
 
 class App extends React.Component {
     constructor(props) {
@@ -48,7 +49,10 @@ class App extends React.Component {
                 </div>
                 <div className='row'>
                     <Card/>
-            </div>
+                </div>
+                <div className='row'>
+                    <Button view='extra' size='xl'>Оплатить</Button>
+                </div>
             </div>
         )
     }
@@ -58,3 +62,5 @@ export default connect(
     null,
     null
 )(App)
+
+
