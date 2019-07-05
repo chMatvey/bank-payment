@@ -76,19 +76,19 @@ class Card extends React.Component {
                 <div className='row'>
                     <CardInput className='long-input' size='xl'
                                placeholder='Введите номер карты'
-                               error={this.state.isCorrectCardNumber ? 'Неверный номер карты' : null}
+                               error={!this.state.isCorrectCardNumber ? 'Неверный номер карты' : null}
                                onChange={value => this.handleCardNumberChange(value)}/>
                 </div>
                 <div className='row'>
-                    <Input className='long-input' theme='alfa-on-white'
+                    <Input className='long-input' theme='alfa-on-white' maxLength={26}
                            placeholder='Введите имя держателя карты'
-                           error={this.state.isCorrectName ? 'Только латинские символы' : null}
+                           error={!this.state.isCorrectOwnerName ? 'Только латинские символы' : null}
                            view='line'
                            size='xl'
                            value={this.state.name}
                            onChange={value => this.setState({
                                name: value,
-                               isCorrectName: /^[a-zA-Z]{1,26}$/i.test(value)
+                               isCorrectOwnerName: /^[a-zA-Z]{1,26}$/i.test(value)
                            })}
                     />
                 </div>
@@ -101,11 +101,11 @@ class Card extends React.Component {
                     </div>
                     <div className='column'>
                         <Input className='cvc-input' size='l'
-                               placeholder='CVC'
-                               error={this.state.isCorrectCVC ? 'Три цифры, на обратной стороне карты' : null}
+                               placeholder='CVC' maxLength={3}
+                               error={!this.state.isCorrectCVC ? 'Три цифры, на обратной стороне карты' : null}
                                onChange={value => this.setState({
                                    cvc: value,
-                                   isCorrectCVC: value.search(/\d/) === -1 || value.length !== 3
+                                   isCorrectCVC: /^\d{3}$/i.test(value)
                                })}
                         />
                     </div>
