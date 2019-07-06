@@ -26,8 +26,20 @@ html, body {
     display: flex;
     margin: 1%;
     justify-content: space-between;
+    width: 650px;
 }
 
 .column {
     margin: 1%;
+}
+
+.payment-component .sum {
+    display: flex;
+    justify-content: center;
+}
+
+.payment-component .payment {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5%;
 }
