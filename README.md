@@ -1,9 +1,9 @@
 # bank-payment
-####back-end:
+### back-end:
 npm install
 
 npm start
-####front-end:
+### front-end:
 npm install
 
 npm start
