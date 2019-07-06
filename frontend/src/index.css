@@ -14,7 +14,7 @@ html, body {
     box-sizing: border-box;
 }
 
-.payment-component {
+.app {
     width: 100%;
     height: 100%;
     display: flex;
@@ -33,13 +33,18 @@ html, body {
     margin: 1%;
 }
 
-.payment-component .sum {
+.app .sum {
     display: flex;
     justify-content: center;
 }
 
-.payment-component .payment {
+.app .payment-btn {
     display: flex;
     justify-content: flex-end;
     margin-right: 5%;
+}
+
+.app .payment-result-info {
+    display: flex;
+    justify-content: center;
 }

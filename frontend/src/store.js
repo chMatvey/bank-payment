@@ -11,7 +11,8 @@ const store = createStore((state = [], action) => {
         case 'CLEAR': {
             return [];
         }
-        default: break;
+        default:
+            break;
     }
     return state;
 });

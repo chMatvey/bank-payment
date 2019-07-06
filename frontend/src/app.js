@@ -7,6 +7,7 @@ import Card from './component/card/card';
 import Button from "arui-feather/button";
 import axios from 'axios';
 import Label from 'arui-feather/label';
+import PaymentsHistory from './component/payments-history/payments-history';
 
 const url = "";
 
@@ -34,26 +35,29 @@ class App extends React.Component {
             cardInfo.currency = this.state.currency;
             axios.post(url, cardInfo)
                 .then(res => {
-                    console.log(res.data);
-                    console.log(res);
                     this.props.onAddPayment(res.data);
                     this.setState({
-                        paymentResultInfo: "Платеж выполнен!"
+                        paymentResultInfo: "Платеж выполнен!",
+                        sum: ''
                     });
                 })
-                .catch(res => {
+                .catch(error => {
                     this.setState({
-                        paymentResultInfo: "Платеж не выполнен, " +  (res.status < 500 ? 'ошибка клиента' : 'ошибка сервера')
+                        paymentResultInfo: "Платеж не выполнен, "
+                            + (error.toString().search(/code 4\d{2}/) !== -1 ? 'ошибка клиента!' : 'ошибка сервера!')
                     });
                 })
                 .finally(_ => {
+                    setTimeout(_ => {
+                        this.setState({paymentResultInfo: ''})
+                    }, 5000)
                 })
         }
     }
 
     render() {
         return (
-            <div className='payment-component'>
+            <div className='app'>
                 <div className='row payment-result-info'>
                     <Label size='xl'>
                         {this.state.paymentResultInfo}
@@ -62,6 +66,7 @@ class App extends React.Component {
                 <div className='row sum'>
                     <Input size='xl' placeholder='Введите сумму' type='number'
                            error={!this.state.isCorrectSum ? 'Сумма платежа д.б. больше нуля' : null}
+                           value={this.state.sum}
                            onChange={value => this.setState({
                                sum: value,
                                isCorrectSum: Number(value) > 0
@@ -86,8 +91,11 @@ class App extends React.Component {
                 <div className='row'>
                     <Card ref={this.card}/>
                 </div>
-                <div className='row payment'>
+                <div className='row payment-btn'>
                     <Button view='extra' size='xl' onClick={this.handleSubmit.bind(this)}>Оплатить</Button>
+                </div>
+                <div className='row'>
+                    <PaymentsHistory/>
                 </div>
             </div>
         )
@@ -98,7 +106,7 @@ export default connect(
     null,
     dispatch => ({
         onAddPayment: payment => {
-            dispatch({type: 'ADD_PAYMENT'})
+            dispatch({type: 'ADD_PAYMENT', payload: payment})
         }
     })
 )(App)
